@@ -8,6 +8,7 @@ gulp.task('stylus', function(){
   return gulp.src('styl/**/*.styl')
     .pipe(stylus())
     .pipe(concat('all.css'))
+    .pipe(gulp.dest('css/'))
     .pipe(minify())
     .pipe(rename({ extname: '.min.css' }))
     .pipe(gulp.dest('css/'));
