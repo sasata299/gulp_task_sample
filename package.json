@@ -1,5 +1,6 @@
 {
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "gulp-stylus": "^2.6.0"
   }
 }
