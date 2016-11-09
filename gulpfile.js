@@ -18,4 +18,8 @@ gulp.task('hello', function() {
   console.log('Hello gulp!');
 });
 
+gulp.task('watch', function() {
+  gulp.watch(['styl/**/*.styl'], ['stylus']);
+});
+
 gulp.task('default', ['hello']);
