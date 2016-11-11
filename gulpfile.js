@@ -7,6 +7,11 @@ var rename = require('gulp-rename');
 gulp.task('stylus', function(){
   return gulp.src('styl/**/*.styl')
     .pipe(stylus())
+    .pipe(gulp.dest('csv/'))
+});
+
+gulp.task('optimize', ['stylus'], function() {
+  return gulp.src('css/**/*.css')
     .pipe(concat('all.css'))
     .pipe(gulp.dest('css/'))
     .pipe(minify())
