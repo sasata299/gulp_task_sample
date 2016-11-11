@@ -3,11 +3,12 @@ var stylus = require('gulp-stylus');
 var concat = require('gulp-concat');
 var minify = require('gulp-minify-css');
 var rename = require('gulp-rename');
+var runSequence = require('run-sequence');
 
 gulp.task('stylus', function(){
   return gulp.src('styl/**/*.styl')
     .pipe(stylus())
-    .pipe(gulp.dest('csv/'))
+    .pipe(gulp.dest('css/'))
 });
 
 gulp.task('optimize', ['stylus'], function() {
@@ -17,6 +18,13 @@ gulp.task('optimize', ['stylus'], function() {
     .pipe(minify())
     .pipe(rename({ extname: '.min.css' }))
     .pipe(gulp.dest('css/'));
+});
+
+gulp.task('stylusOptimize', function() {
+  runSequence(
+    'stylus',
+    'optimize'
+  );
 });
 
 gulp.task('hello', function() {
