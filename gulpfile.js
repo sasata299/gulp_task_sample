@@ -5,10 +5,15 @@ var minify = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var runSequence = require('run-sequence');
 var plumber = require('gulp-plumber');
+var notify = require('gulp-notify');
+
+function plumberWithNotify() {
+  return plumber({ errorHandler: notify.onError("<%= error.message %>") });
+}
 
 gulp.task('stylus', function(){
   return gulp.src('styl/**/*.styl')
-    .pipe(plumber())
+    .pipe(plumberWithNotify())
     .pipe(stylus())
     .pipe(gulp.dest('css/'))
 });
