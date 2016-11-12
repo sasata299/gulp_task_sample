@@ -37,19 +37,25 @@ gulp.task('stylusOptimize', function() {
 
 gulp.task('server', function() {
   browserSync({
+    browser: 'google chrome',
     server: {
-      baseDir: './src',
-      directory: true
-    }
+      baseDir: './src'
+      //directory: true
+    },
+    reloadDelay: 1000
   });
+});
+
+gulp.task('watch', ['server'], function() {
+  gulp.watch(['./src/**/*.html'], browserSync.reload);
 });
 
 gulp.task('hello', function() {
   console.log('Hello gulp!');
 });
 
-gulp.task('watch', function() {
-  gulp.watch(['styl/**/*.styl'], ['stylus']);
-});
+//gulp.task('watch', function() {
+//  gulp.watch(['styl/**/*.styl'], ['stylus']);
+//});
 
 gulp.task('default', ['hello']);
