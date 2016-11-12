@@ -4,9 +4,11 @@ var concat = require('gulp-concat');
 var minify = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var runSequence = require('run-sequence');
+var plumber = require('gulp-plumber');
 
 gulp.task('stylus', function(){
   return gulp.src('styl/**/*.styl')
+    .pipe(plumber())
     .pipe(stylus())
     .pipe(gulp.dest('css/'))
 });
