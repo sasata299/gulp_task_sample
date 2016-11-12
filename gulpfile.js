@@ -6,6 +6,7 @@ var rename = require('gulp-rename');
 var runSequence = require('run-sequence');
 var plumber = require('gulp-plumber');
 var notify = require('gulp-notify');
+var browserSync = require('browser-sync');
 
 function plumberWithNotify() {
   return plumber({ errorHandler: notify.onError("<%= error.message %>") });
@@ -32,6 +33,15 @@ gulp.task('stylusOptimize', function() {
     'stylus',
     'optimize'
   );
+});
+
+gulp.task('server', function() {
+  browserSync({
+    server: {
+      baseDir: './src',
+      directory: true
+    }
+  });
 });
 
 gulp.task('hello', function() {
