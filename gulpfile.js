@@ -7,6 +7,7 @@ var runSequence = require('run-sequence');
 var plumber = require('gulp-plumber');
 var notify = require('gulp-notify');
 var browserSync = require('browser-sync');
+var using = require('gulp-using');
 
 function plumberWithNotify() {
   return plumber({ errorHandler: notify.onError("<%= error.message %>") });
@@ -14,6 +15,7 @@ function plumberWithNotify() {
 
 gulp.task('stylus', function(){
   return gulp.src('styl/**/*.styl')
+    .pipe(using())
     .pipe(plumberWithNotify())
     .pipe(stylus())
     .pipe(gulp.dest('css/'))
@@ -46,7 +48,7 @@ gulp.task('server', function() {
   });
 });
 
-gulp.task('watch', ['server'], function() {
+gulp.task('sync', ['server'], function() {
   gulp.watch(['./src/**/*.html'], browserSync.reload);
 });
 
@@ -54,8 +56,8 @@ gulp.task('hello', function() {
   console.log('Hello gulp!');
 });
 
-//gulp.task('watch', function() {
-//  gulp.watch(['styl/**/*.styl'], ['stylus']);
-//});
+gulp.task('watch', function() {
+  gulp.watch(['styl/**/*.styl'], ['stylus']);
+});
 
 gulp.task('default', ['hello']);
