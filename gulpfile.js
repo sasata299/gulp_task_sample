@@ -8,6 +8,7 @@ var plumber = require('gulp-plumber');
 var notify = require('gulp-notify');
 var browserSync = require('browser-sync');
 var using = require('gulp-using');
+var cached = require('gulp-cached');
 
 function plumberWithNotify() {
   return plumber({ errorHandler: notify.onError("<%= error.message %>") });
@@ -15,6 +16,7 @@ function plumberWithNotify() {
 
 gulp.task('stylus', function(){
   return gulp.src('styl/**/*.styl')
+    .pipe(cached())
     .pipe(using())
     .pipe(plumberWithNotify())
     .pipe(stylus())

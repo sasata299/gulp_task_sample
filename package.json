@@ -2,6 +2,7 @@
   "devDependencies": {
     "browser-sync": "^2.17.5",
     "gulp": "^3.9.1",
+    "gulp-cached": "^1.1.0",
     "gulp-concat": "^2.6.0",
     "gulp-minify-css": "^1.2.4",
     "gulp-notify": "^2.2.0",
