@@ -10,7 +10,14 @@ var browserSync = require('browser-sync');
 var using = require('gulp-using');
 var cached = require('gulp-cached');
 var remember = require('gulp-remember');
-var exec = require('child_process').exec;
+//var exec = require('child_process').exec;
+var exec = require('gulp-exec');
+
+gulp.task('remove', function() {
+  return gulp.src('./css/**/_*.css')
+    .pipe(exec('rm <%= file.path %>'))
+    .pipe(exec.reporter());
+});
 
 gulp.task('test', function() {
   console.log('test');
